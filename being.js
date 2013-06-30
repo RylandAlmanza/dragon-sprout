@@ -7,7 +7,7 @@ function Being(name, character, x, y, foreground, background) {
     this.x = x;
     this.y = y;
     this.foreground = foreground;
-    this.background = 'clear';
+    this.background = BLACK;
 };
 
 // Player
@@ -19,8 +19,8 @@ function Player(name, x, y) {
     this.character = "@";
     this.x = x;
     this.y = y;
-    this.foreground = '#fff';
-    this.background = 'clear';
+    this.foreground = WHITE;
+    this.background = BLACK;
 };
 
 /*Player.prototype.hasItemType = function(name) {

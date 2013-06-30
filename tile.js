@@ -20,8 +20,8 @@ function Grass(x, y) {
     this.character = '.';
     this.x = x;
     this.y = y;
-    this.foreground = '#0f0';
-    this.background = '#000';
+    this.foreground = GREEN;
+    this.background = BLACK;
     this.isWalkable = true;
 };
 
@@ -34,8 +34,8 @@ function Wheat(x, y) {
     this.character = '"';
     this.x = x;
     this.y = y;
-    this.foreground = '#ff0'
-    this.background = '#000';
+    this.foreground = LIGHT_ORANGE;
+    this.background = BLACK;
     this.isWalkable = true;
 };
 
@@ -48,8 +48,8 @@ function Tree(x, y) {
     this.character = 'T';
     this.x = x;
     this.y = y;
-    this.foreground = '#0f0';
-    this.background = '#000';
+    this.foreground = GREEN;
+    this.background = BLACK;
     this.isWalkable = false;
 };
 
@@ -62,8 +62,8 @@ function Wall(x, y) {
     this.character = '#';
     this.x = x;
     this.y = y;
-    this.foreground = '#fff';
-    this.background = '#fff';
+    this.foreground = WHITE;
+    this.background = WHITE;
     this.isWalkable = false;
 };
 
@@ -76,8 +76,8 @@ function Floor(x, y) {
     this.character = '.';
     this.x = x;
     this.y = y;
-    this.foreground = '#fff';
-    this.background = '#000';
+    this.foreground = WHITE;
+    this.background = BLACK;
     this.isWalkable = true;
 };
 
@@ -90,7 +90,7 @@ function Door(x, y) {
     this.character = '+';
     this.x = x;
     this.y = y;
-    this.foreground = '#0ff';
-    this.background = '#000';
+    this.foreground = BROWN;
+    this.background = BLACK;
     this.isWalkable = true;
 };
