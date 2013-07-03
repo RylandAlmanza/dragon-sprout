@@ -1,5 +1,5 @@
-var game_width = 80;
-var game_height = 22;
+var game_width = 81;
+var game_height = 21;
 
 var startgame = function() {
     var seed = Math.seedrandom();
@@ -9,15 +9,23 @@ var startgame = function() {
     document.body.appendChild(display.getContainer());
     
     var dungeon = new Dungeon(game_width, game_height);
-    for (var y = 0; y < dungeon.height; y++) {
+    /*for (var y = 0; y < dungeon.height; y++) {
         for (var x = 0; x < dungeon.width; x++) {
             if (dungeon.tiles[y][x] != null) {
                 display.draw(x, y, dungeon.tiles[y][x].character, dungeon.tiles[y][x].foreground, dungeon.tiles[y][x].background);
             }
         }
+    }*/
+    for (var i = 0; i < dungeon.lit_tiles.length; i++) {
+        var x = dungeon.lit_tiles[i].x;
+        var y = dungeon.lit_tiles[i].y;
+        var character = dungeon.lit_tiles[i].character;
+        var foreground = dungeon.lit_tiles[i].foreground;
+        var background = dungeon.lit_tiles[i].background;
+        display.draw(x, y, character, foreground, background);
     }
     
-    var player = new Player('player', dungeon.player_x, dungeon.player_y);
+    var player = new Player('player', dungeon.playerPos.x, dungeon.playerPos.y);
     display.draw(player.x, player.y, player.character, player.foreground);
     
     document.onkeydown = function(evt) {
@@ -49,8 +57,28 @@ var startgame = function() {
             return;
         }
         if (dungeon.tiles[player.y][player.x].isWalkable) {
+            for (var y = 0; y < game_height; y++) {
+                for (var x = 0; x < game_width; x++) {
+                    var background = BLACK;
+                    if (dungeon.tiles[y][x].name == 'wall') {
+                        background = GRAY;
+                    }
+                    if (display._data.hasOwnProperty(x+','+y))
+                    display.draw(x, y, display._data[x+','+y][2], GRAY, background);
+                }
+            }
             display.draw(old_x, old_y, dungeon.tiles[old_y][old_x].character, dungeon.tiles[old_y][old_x].foreground, dungeon.tiles[old_y][old_x].background);
             display.draw(player.x, player.y, player.character, player.foreground);
+            dungeon.FOV(player.x, player.y, 15);
+            for (var i = 0; i < dungeon.lit_tiles.length; i++) {
+                var x = dungeon.lit_tiles[i].x;
+                var y = dungeon.lit_tiles[i].y;
+                var character = dungeon.lit_tiles[i].character;
+                var foreground = dungeon.lit_tiles[i].foreground;
+                var background = dungeon.lit_tiles[i].background;
+                display.draw(x, y, character, foreground, background);
+            }
+
         } else {
             player.x = old_x;
             player.y = old_y;
